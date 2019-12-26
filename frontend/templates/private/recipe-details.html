@@ -1,0 +1,138 @@
+<section id="recipe-details">
+
+  <div ng-if="error || recipe.length <=0">
+    <div class="jumbotron text-center mt-5 shadow-sm">
+      <h1 class="display-4 text-danger">ERROR!</h1>
+      <p class="lead text-warning">{{error}}
+      </p>
+        <a class="btn btn-outline-primary" href="#/dashboard" role="button">BACK TO HOME PAGE</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Update MSG -->
+  <div class="container mt-3" ng-show="isRecipeEdited">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="alert alert-success text-center">
+          This recipe updated successfully.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid" ng-hide="error">
+    <div class="container">
+      <div class="row mb-2 text-center">
+        <div class="col-md-6 col-sm-12 text-center text-md-left text-lg-left text-xl-left">
+          <a href="#/dashboard" class="btn btn-link btn-lg"><i class="icofont-arrow-left"></i> Go Back to Dashboard</a>
+        </div>
+        <div class="col-md-6 col-sm-12" ng-if="recipe.user._id === userId">
+            <a href="#/recipe-edit/{{recipe._id}}" class="btn btn-warning m-2"
+              >Edit Recipe <i class="icofont-edit icofont-2x"></i
+            ></a>
+            <a
+              href=""
+              class="btn btn-outline-danger"
+              data-toggle="modal"
+              data-target="#deleteModal"
+              ng-init="deleteRecipeId = recipe._id"
+              >Delete Recipe <i class="icofont-ui-delete icofont-2x"></i
+            ></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-md-12 col-lg-6 pb-5">
+        <img
+          ng-src="http://localhost:3000/{{recipe.imageUrl}}"
+          alt="{{recipe.title}}"
+          srcset=""
+          class="img-thumbnail shadow-sm"
+          style="max-height: 350px;"
+        />
+        <ul class="list-group list-group-flush shadow-sm text-center">
+          <li class="list-group-item">
+            <h1 class="text-primary">{{recipe.title}}</h1>
+          </li>
+          <li class="list-group-item">
+            <h3>Course: {{recipe.course}}</h3>
+          </li>
+          <li class="list-group-item lead">
+            {{recipe.description}}
+          </li>
+          <li class="list-group-item lead">
+            Posted by:
+            <span>{{recipe.user.firstname +' '+recipe.user.lastname}}</span>
+          </li>
+          <li class="list-group-item lead">Contact: {{recipe.user.email}}</li>
+          <li class="list-group-item lead">
+            Posted at: <span>{{recipe.createdAt | date:'medium'}}</span>
+          </li>
+          <li class="list-group-item lead" ng-if="recipe.updatedAt">
+            Updated at: <span>{{recipe.updatedAt | date:'medium'}}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-12 col-lg-6 pb-5">
+        <div class="card-header h2 text-info">ingredients</div>
+        <ul class="list-group list-group-flush mb-5">
+          <li
+            class="list-group-item"
+            ng-repeat="ingredient in recipe.ingredients track by $index"
+          >
+            {{ingredient}}
+          </li>
+        </ul>
+        <div class="card-header h2 text-info">Instructions</div>
+        <p class="lead p-3">{{recipe.instructions}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- {{recipe ||json}} -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="deleteModalLabel"
+  aria-hidden="true"
+  controller="RecipeDeleteController"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete Recipe</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure to delete this recipe ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          data-dismiss="modal"
+          ng-click="deleteRecipe();"
+          class="btn btn-primary"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

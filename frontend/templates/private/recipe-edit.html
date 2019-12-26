@@ -1,0 +1,148 @@
+<section id="recipe-edit">
+  <div class="container ">
+    <h1>Edit Recipe</h1>
+    <!-- <pre>
+      {{recipe|json}}
+    </pre> -->
+  </div>
+
+  <hr />
+
+  <!-- Error -->
+  <div class="container" ng-show="errorsRecipeEdit">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8 col-sm-12" ng-repeat="error in errorsRecipeEdit">
+        <div class="alert alert-danger text-center">
+          {{error}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!-- FORM -->
+   <form action="#" name="editRecipeForm" method="post">
+    <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
+            <div class="pl-2 pr-2">
+            <!-- File -->
+            <div class="form-group mt-3">
+              <label for="recipeImg">Choose the picture of your recipe</label>
+              <input
+                type="file"
+                class="form-control-file"
+                id="imageUrl"
+                name="imageUrl"
+              />
+
+            </div>
+            <!-- Title -->
+            <div class="form-group">
+              <label for="title">Recipe Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                name="title"
+                ng-class="{'is-valid': editRecipeForm.title.$valid && editRecipeForm.title.$touched}"
+                ng-model="recipe.title"
+                required
+              />
+              <p class="text-danger p-2" ng-show="editRecipeForm.title.$touched && editRecipeForm.title.$invalid">Please provide us your recipe title.</small
+              >
+            </div>
+            <!-- Course -->
+            <div class="form-group">
+              <label for="course">Recipe course</label>
+              <select
+                class="form-control"
+                id="course"
+                name="course"
+                ng-class="{'is-valid': editRecipeForm.course.$valid && editRecipeForm.course.$touched}"
+                ng-model="recipe.course"
+                required
+              >
+                <option value="" selected>select course</option>
+                <option value="Breackfast">Breackfast</option>
+                <option value="Dessert">Dessert</option>
+                <option value="Drink">Drink</option>
+                <option value="Maindish">Maindish</option>
+                <option value="Salad">Salad</option>
+                <option value="Soup">Soup</option>
+              </select>
+              <p class="text-danger p-2" ng-show="editRecipeForm.course.$invalid && editRecipeForm.course.$touched">Please choose the course of your recipe.</small
+              >
+            </div>
+            <!-- Description -->
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea
+                class="form-control"
+                id="description"
+                name="description"
+                rows="3"
+                ng-class="{'is-valid': editRecipeForm.description.$valid && editRecipeForm.description.$touched}"
+                ng-model="recipe.description"
+                required
+              ></textarea>
+              <p class="text-danger p-2" ng-show="editRecipeForm.description.$invalid && editRecipeForm.description.$touched">Please provide us your recipe's description.</p
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
+            <div class="pl-2 pr-2">
+            <!-- Instructions -->
+            <div class="form-group mt-3">
+              <label for="instructions">Instructions</label>
+              <textarea
+                class="form-control"
+                id="instructions"
+                name="instructions"
+                rows="5"
+                ng-class="{'is-valid': editRecipeForm.instructions.$valid && editRecipeForm.instructions.$touched}"
+                ng-model="recipe.instructions"
+                required
+              ></textarea>
+              <p class="text-danger p-2" ng-show="editRecipeForm.instructions.$invalid && editRecipeForm.instructions.$touched">
+                Please provide us your recipe's instructions.</p>
+           </div>
+
+            <!-- Ingrediance -->
+            <div>
+              <label for="ingredients">Ingredients</label>
+              <!-- {{recipe.ingredients}} -->
+              <ul class="list-group mb-2" ng-repeat="ingredients in recipe.ingredients track by $index">
+                <li class="list-group-item d-flex justify-content-between text-center">
+                  {{ingredients}}
+                  <i class="icofont-ui-close text-danger" ng-click="removeFromList($index);" style="cursor: pointer;"></i>
+                </li>
+              </ul>
+              <div class="input-group mb-2">
+                <input type="text" class="form-control" placeholder="Enter ingredients" id="ingredients" name="ingredients" ng-model="newingredients">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-primary" type="button" ng-click="makeingredientsList(newingredients);">Add</button>
+                </div>
+              </div>
+              <p class="text-danger p-2" ng-show="erroringredients" >Please provide us your recipe's ingredients.</p>
+            </div>
+             <!-- Button -->
+             <div class="form-group mt-3">
+               <button type="button" class="btn btn-lg btn-info" ng-click="updateRecipe(recipe);" >
+                 <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+                ng-show="loadingEditRecipe"
+              ></span>
+
+              <span ng-show="loadingEditRecipe">Loading...</span>
+              <span ng-hide="loadingEditRecipe">Update Recipe</span></button>
+             </div>
+          </div>
+          </div>
+      </div>
+    </div>
+  </form>
+
+</section>

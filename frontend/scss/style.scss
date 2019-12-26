@@ -1,0 +1,99 @@
+@import './variables';
+
+// @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,500&display=swap');
+
+// Local Variable
+$body-color: $light;
+
+// ICON
+.icofont-2x {
+  font-size: 1.2rem !important;
+}
+
+header .icofont-3x,
+nav .icofont-3x {
+  font-size: 1.8rem;
+}
+
+// SCSS
+body {
+  // font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+section {
+  margin-top: 65px !important;
+}
+
+// Header
+.navbar {
+  padding: 0.3rem 1rem;
+}
+
+header {
+  a {
+    font-size: 1.1rem;
+    color: $gray-800;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+// Backgroud
+.bg-header {
+  background-color: #35cd8b;
+}
+
+// Model
+.modal-backdrop.show {
+  opacity: 0;
+}
+.modal-backdrop {
+  height: 0;
+  width: 0;
+}
+
+// Card
+#dashboard .card,
+#my-recipes .card {
+  color: #fff;
+  background-color: #282828;
+  transition: all 0.3s ease-in-out;
+
+  img {
+    opacity: 0.7;
+    width: 100%;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+  }
+  .card-footer {
+    padding: 0%;
+    .btn-link {
+      color: #35cd8b;
+    }
+  }
+  .list-group-item {
+    background-color: #c5c5c5;
+    color: #282828;
+  }
+  &:hover {
+    transform: scale(1.03);
+    img {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+  }
+}
+
+// Dashboard
+section#dashboard {
+  .modal-backdrop.show {
+    opacity: 0;
+  }
+  .modal-backdrop {
+    height: 0;
+    width: 0;
+  }
+}

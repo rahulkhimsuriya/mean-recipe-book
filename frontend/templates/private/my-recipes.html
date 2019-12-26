@@ -1,0 +1,60 @@
+<section id="my-recipes">
+
+  <div class="container">
+    <h1 class="p-3">My Recipes</h1>
+    <!-- <pre>
+      {{myRecipes|json}}
+    </pre> -->
+  </div>
+
+  <hr>
+
+  <div class="container">
+
+    <div ng-if="myRecipes.length <= 0 || myRecipes.length == null">
+      <div class="jumbotron text-center mt-5 shadow-sm">
+        <h1 class="display-4 text-info">My Recipes!</h1>
+        <p class="lead text-dark mt-2">It's look like you did't create any recipe.</p>
+          <a class="btn btn-outline-primary mt-2" href="#/add-recipe" role="button">Create Your Recipe</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="row justify-content-center" ng-show="recipeCreated">
+      <div class="col-lg-6 col-lg-offset-3 col-sm-12" >
+        <div class="alert alert-success text-center">
+          Recipe created successfully.
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-sm-12 col-lg-4" ng-repeat="recipe in myRecipes">
+        <div class="card mb-3">
+          <h3 class="card-header text-truncate">{{recipe.title}}</h3>
+          <img
+            style="height: 200px; width: 100%; display: block;"
+            ng-src="http://localhost:3000/{{recipe.imageUrl}}"
+            alt="Card image"
+          />
+          <div class="card-body">
+            <p class="card-text text-truncate">
+              {{recipe.description}}
+            </p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              Posted at: {{recipe.createdAt | date:'medium'}}
+            </li>
+          </ul>
+          <div class="card-footer text-muted">
+            <a href="#/recipe-details/{{recipe._id}}" class="btn btn-link "
+              >Read more</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </section>

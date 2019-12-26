@@ -1,0 +1,154 @@
+<section id="dashboard">
+  <!-- Filter -->
+  <div
+    class="container-fluid shadow-sm p-3 mt-0 mb-4"
+  >
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-md-4">
+        <input
+          type="text"
+          class="form-control form-control-lg pl-3"
+          name="query"
+          placeholder="Search..."
+          id="query"
+          ng-model="query"
+        />
+      </div>
+      <div class="col-sm-12 col-md-2 mt-2">
+        <!-- {{course}} -->
+        <select class="custom-select" ng-model="course">
+          <option value="" selected>filter by course</option>
+          <option value="Breackfast">Breackfast</option>
+          <option value="Dessert">Dessert</option>
+          <option value="Drink">Drink</option>
+          <option value="Maindish">Maindish</option>
+          <option value="Salad">Salad</option>
+          <option value="Soup">Soup</option>
+        </select>
+      </div>
+
+      <div class="col-sm-12 col-md-2 mt-3">
+        <!-- {{direction}} -->
+        <div class="form-group">
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              id="shortAsc"
+              name="direction"
+              class="custom-control-input"
+              checked="true"
+              ng-model="direction"
+            />
+            <label class="custom-control-label" for="shortAsc">ASC</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input
+              type="radio"
+              id="shortDesc"
+              name="direction"
+              class="custom-control-input"
+              ng-model="direction"
+              value="reverse"
+            />
+            <label class="custom-control-label" for="shortDesc">DESC</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Success MSG -->
+  <div class="container mt-2 mb-3" ng-show="deleteRecipe">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-12 text-center">
+        <div
+          class="alert alert-success alert-dismissible fade show"
+          role="alert"
+        >
+          Recipe deleted successfully.
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- If No Data -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div ng-if="recipes.length <= 0 || recipes.length == null">
+          <div class="jumbotron text-center mt-5 shadow-sm">
+            <h1 class="display-4 text-warning">Recipes!</h1>
+            <p class=" h2 text-dark mt-2">It's look database have no recipe.</p>
+              <a class="btn btn-success mt-2" href="#/add-recipe" role="button">Create Your Recipe</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA -->
+  <div class="container">
+    <div class="row">
+      <!-- Error -->
+      <div class="col-12 text-center" ng-show="error">
+        <div class="alert alert-danger"></div>
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          {{error}}
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      <!-- End Error -->
+
+      <div
+        class="col-sm-12 col-md-6 col-lg-3"
+        ng-repeat="recipe in recipes | filter: query | filter: {'course':course} | orderBy:'title':direction"
+      >
+        <div class="card mb-4">
+          <h3 class="card-header text-truncate">{{recipe.title}}</h3>
+          <img
+            style="height: 200px; width: 100%; display: block;"
+            ng-src="http://localhost:3000/{{recipe.imageUrl}}"
+            alt="Card image"
+          />
+          <div class="card-body">
+            <p class="card-text text-truncate">
+              {{recipe.description}}
+            </p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              Posted by
+              <span class="font-weight-bold"
+                >{{recipe.user.firstname +' ' +recipe.user.lastname}}</span
+              >
+            </li>
+          </ul>
+          <div class="card-footer text-muted">
+            <a href="#/recipe-details/{{recipe._id}}" class="btn btn-link "
+              >Read more</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

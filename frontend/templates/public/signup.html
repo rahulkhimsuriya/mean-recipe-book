@@ -1,0 +1,188 @@
+<style>
+  /* body {
+    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+  } */
+</style>
+
+<section id="signup">
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div
+        class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0"
+      >
+        <div class="card border-light shadow-lg text-center mb-3 p-3">
+          <div class="card-header bg-light">
+            <h1 class="text-info">Welcome</h1>
+            <p class="lead">
+              It only takes a few seconds to create your account
+            </p>
+          </div>
+          <div class="card-body pl-5 pr-5 text-center">
+            <!-- Alert -->
+            <div class="alert alert-success pt-3 pb-3" ng-show="signupStatus">
+              You are registered successfully.
+              <a href="#/login" class="alert-link">login</a>
+            </div>
+
+            <!-- {{signupForm | json}} -->
+            <form
+              action="#"
+              method="post"
+              name="signupForm"
+              class="needs-validation"
+              novalidate
+            >
+              <div class="row">
+                <div class="col-md-12 col-lg-12 col-lg-offset-1">
+                  <div class="row">
+                    <!-- Firstname -->
+                    <div class="col-md-12 col-lg-6">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          placeholder="Firstname"
+                          class="form-control form-control-lg"
+                          id="firstname"
+                          name="firstname"
+                          ng-class="[{'is-invalid': signupForm.firstname.$invalid && signupForm.firstname.$touched},{'is-valid': signupForm.firstname.$valid ||signupForm.firstname.$touched}]"
+                          ng-model="newUser.firstname"
+                          required
+                        />
+                        <div
+                          class="text-danger pt-1"
+                          ng-show="signupForm.firstname.$invalid && signupForm.firstname.$touched"
+                        >
+                          <!-- {{errorFirstname }} -->
+                          Please provide us your firstname.
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Lastname -->
+                    <div class="col-md-12 col-lg-6">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          placeholder="Lastname"
+                          class="form-control form-control-lg"
+                          id="lastname"
+                          name="lastname"
+                          ng-class="[{'is-invalid': signupForm.lastname.$invalid && signupForm.lastname.$touched},{'is-valid': signupForm.lastname.$valid || signupForm.lastname.$touched}]"
+                          ng-model="newUser.lastname"
+                          required
+                        />
+                        <div
+                          class="text-danger pt-1"
+                          ng-show="signupForm.lastname.$invalid && signupForm.lastname.$touched"
+                        >
+                          <!-- {{errorLastname}} -->
+                          Please provide us your lastname.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      class="form-control form-control-lg"
+                      id="email"
+                      name="email"
+                      ng-class="[{'is-invalid': signupForm.email.$invalid && signupForm.email.$touched || errorEmail  },{'is-valid': signupForm.email.$valid || signupForm.email.$touched}]"
+                      ng-model="newUser.email"
+                      required
+                    />
+                    <div
+                      class="text-danger pt-1"
+                      ng-show="signupForm.email.$touched && signupForm.email.$invalid"
+                    >
+                      Please provide us your valid email.
+                    </div>
+
+                    <div class="text-danger pt-1" ng-show="errorEmail">
+                      Email already registered. Please use other one.
+                    </div>
+                  </div>
+
+                  <!-- Password -->
+                  <div class="form-group">
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      class="form-control form-control-lg {{invaliPassword}}"
+                      id="password"
+                      name="password"
+                      ng-class="[{'is-invalid': signupForm.password.$invalid && signupForm.password.$touched},{'is-valid': signupForm.password.$valid || signupForm.password.$touched},{'is-invalid': (signupForm.password.$viewValue != signupForm.confirmPassword.$viewValue) && (signupForm.confirmPassword.$valid || signupForm.confirmPassword.$touched) || ((signupForm.password.$viewValue).length < 6) }]"
+                      ng-model="newUser.password"
+                      required
+                    />
+                    <div
+                      class="text-danger pt-1"
+                      ng-show="signupForm.password.$invalid && signupForm.password.$touched"
+                    >
+                      <!-- {{errorPassword}} -->
+                      Please enter a password.
+                    </div>
+                    <div
+                      class="text-danger pt-1"
+                      ng-show="((signupForm.password.$viewValue).length < 6)"
+                    >
+                      Password must be equal or more than 6 character.
+                    </div>
+                  </div>
+
+                  <!-- Confirm Password -->
+                  <div class="form-group">
+                    <input
+                      type="password"
+                      placeholder="Confirm password"
+                      class="form-control form-control-lg {{invalidConfirmPassword}}"
+                      id="ConfirmPassword"
+                      name="confirmPassword"
+                      ng-class="[{'is-invalid': signupForm.confirmPassword.$invalid && signupForm.confirmPassword.$touched},{'is-valid': signupForm.confirmPassword.$valid && signupForm.confirmPassword.$touched},{'is-invalid': (signupForm.password.$viewValue != signupForm.confirmPassword.$viewValue) && (signupForm.confirmPassword.$valid || signupForm.confirmPassword.$touched) ||((signupForm.confirmPassword.$viewValue).length < 6) }]"
+                      ng-model="newUser.confirmPassword"
+                      required
+                    />
+                    <div
+                      class="text-danger pt-1"
+                      ng-show="signupForm.confirmPassword.$invalid && signupForm.confirmPassword.$touched"
+                    >
+                      <!-- {{errorConfirmPassword}} -->
+                      Please enter confirm password.
+                    </div>
+
+                    <div
+                      class="text-danger pt-1"
+                      ng-show="(signupForm.password.$viewValue != signupForm.confirmPassword.$viewValue) && (signupForm.confirmPassword.$valid || signupForm.confirmPassword.$touched)"
+                    >
+                      Password and confim password does not match.
+                    </div>
+                  </div>
+
+                  <!-- Button -->
+                  <button
+                    type="button"
+                    class="btn btn-lg btn-success pl-5 pr-5"
+                    ng-click="signup(newUser)"
+                    ng-disabled="!signupForm.$valid"
+                  >
+                    <span
+                      class="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                      ng-show="loading"
+                    ></span>
+
+                    <span ng-show="loading">Loading...</span>
+                    <span ng-hide="loading">Sign up</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

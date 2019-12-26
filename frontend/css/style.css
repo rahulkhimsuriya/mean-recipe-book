@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:400,500&display=swap");
+.icofont-2x {
+  font-size: 1.2rem !important;
+}
+
+header .icofont-3x,
+nav .icofont-3x {
+  font-size: 1.8rem;
+}
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+section {
+  margin-top: 65px !important;
+}
+
+.navbar {
+  padding: 0.3rem 1rem;
+}
+
+header a {
+  font-size: 1.1rem;
+  color: #3e3f3a;
+}
+
+header a:hover {
+  text-decoration: none;
+}
+
+.bg-header {
+  background-color: #35cd8b;
+}
+
+.modal-backdrop.show {
+  opacity: 0;
+}
+
+.modal-backdrop {
+  height: 0;
+  width: 0;
+}
+
+#dashboard .card,
+#my-recipes .card {
+  color: #fff;
+  background-color: #282828;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#dashboard .card img,
+#my-recipes .card img {
+  opacity: 0.7;
+  width: 100%;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+          clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+}
+
+#dashboard .card .card-footer,
+#my-recipes .card .card-footer {
+  padding: 0%;
+}
+
+#dashboard .card .card-footer .btn-link,
+#my-recipes .card .card-footer .btn-link {
+  color: #35cd8b;
+}
+
+#dashboard .card .list-group-item,
+#my-recipes .card .list-group-item {
+  background-color: #c5c5c5;
+  color: #282828;
+}
+
+#dashboard .card:hover,
+#my-recipes .card:hover {
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+}
+
+#dashboard .card:hover img,
+#my-recipes .card:hover img {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  opacity: 1;
+}
+
+section#dashboard .modal-backdrop.show {
+  opacity: 0;
+}
+
+section#dashboard .modal-backdrop {
+  height: 0;
+  width: 0;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,116 @@
+<style>
+  /* body {
+    background-image: linear-gradient(-90deg, #d4fc79 0%, #96e6a1 100%);
+    height: 100vh;
+  } */
+  /* body {
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-size: auto 100%;
+    background-position: left top;
+    background-image: url('img/login/bg.jpg');
+  }
+  header a {
+    color: #fff;
+  }
+  header .btn {
+    border: 1px solid #4caf50;
+  } */
+</style>
+
+<section id="login">
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div
+        class="col-lg-6 col-lg-offset-3 col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0"
+      >
+        <div class="card border-light shadow-lg text-center mb-3 p-3">
+          <div class="card-header bg-light">
+            <i class="icofont-food-basket icofont-4x"></i>
+            <h1>SignIn</h1>
+          </div>
+          <div class="card-body pl-5 pr-5">
+            <!-- Login MSG -->
+            <div class="alert alert-success" ng-show="isLogedIn">
+              You are loged in...
+            </div>
+            <!-- Errors -->
+            <div class="alert alert-danger" ng-show="error">
+              {{error}}
+            </div>
+            <!-- Logout MSG -->
+            <div class="alert alert-success" ng-show="logout">
+              You are logout successfully
+            </div>
+
+            <!-- FORM -->
+            <form action="#" method="post" class="needs-validation" novalidate>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="icofont-ui-user icofont-2x"></i>
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Email..."
+                    class="form-control form-control-lg"
+                    id="inputEmail"
+                    ng-model="user.email"
+                    required
+                  />
+                </div>
+                <div class="invalid-tooltip">Email is required.</div>
+              </div>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="icofont-ui-lock icofont-2x"></i>
+                    </span>
+                  </div>
+                  <input
+                    type="password"
+                    placeholder="Password..."
+                    class="form-control form-control-lg"
+                    id="inputPassword"
+                    ng-model="user.password"
+                    required
+                  />
+                </div>
+                <div class="invalid-tooltip">Password is required.</div>
+              </div>
+
+              <button
+                type="button"
+                class="btn btn-lg btn-primary pl-5 pr-5"
+                ng-click="login(user)"
+              >
+                <span
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                  ng-show="loading"
+                ></span>
+
+                <span ng-show="loading">Loading...</span>
+                <span ng-hide="loading">Sign in</span>
+              </button>
+            </form>
+
+            <hr />
+            <p class="lead">
+              Don't have account ?
+              <span
+                ><a href="#/signup" class="btn-link text-info"
+                  >Create Account</a
+                ></span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
